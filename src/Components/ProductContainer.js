@@ -9,6 +9,24 @@ const ProductContainer = () => {
     setProductList(resp.data.products);
   };
 
+  function clickUpdateHandle(id, updateData) {
+    console.log(updateData);
+    console.log(id);
+    const productIndex = productList.findIndex((i) => i.id === parseInt(id));
+
+    if (productIndex != -1) {
+      productList[productIndex] = {
+        ...productList[productIndex],
+        ...updateData,
+      };
+
+      const newProductList = productList.filter((product) => {
+        return product;
+      });
+      setProductList(newProductList);
+    }
+  }
+
   function clickRemoveHandle(id) {
     const newProductList = productList.filter((product) => {
       if (product.id != id) {
@@ -34,7 +52,7 @@ const ProductContainer = () => {
               {...item}
               key={item.id}
               removeHandle={clickRemoveHandle}
-              // updateHandle={clickUpdateHandle}
+              updateHandle={clickUpdateHandle}
             />
           );
         })}
