@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Navbar from "./Components/Navbar";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Card from "./Components/Card";
+import CardContainer from "./Components/CardContainer";
 
 function App() {
+  const [news, setNews] = useState([]);
+  const [data, setData] = useState({});
+  const childToParennt = (returnedItem) => {
+    setData(returnedItem);
+    console.log(returnedItem);
+    console.log("Parent component");
+  };
+  const fecthNewsFunction = async () => {
+    const fetchNews = await axios.get(
+      "https://newsapi.org/v2/everything?q=tesla&from=2024-01-02&sortBy=publishedAt&apiKey=0b2df5b34fb642109d9e52c574a6b583"
+    );
+    setNews(fetchNews.data.articles);
+  };
+
+  useEffect(() => {
+    fecthNewsFunction();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar childToParennt={childToParennt} />
+      <h1>{data.Name1}</h1>
+      <Card news={news} />
+    </>
   );
 }
 
