@@ -1,17 +1,8 @@
 import React from "react";
 
-const Navbar = ({ childToParennt }) => {
-  const dataFromChild = {
-      Name1: "Ninganna",
-      Name2: "Vaibhav",
-    };
-    const onClickHandle=(e)=>{
-        e.preventDefault();
-        childToParennt(dataFromChild);
-    }
-    
-    return (
-        <>
+const Navbar = () => {
+  return (
+    <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
@@ -37,17 +28,7 @@ const Navbar = ({ childToParennt }) => {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
-                  WeatherApp
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  ChildToParent
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  WeatherApp
+                  Product
                 </a>
               </li>
             </ul>
@@ -58,7 +39,6 @@ const Navbar = ({ childToParennt }) => {
                 placeholder="Search"
                 aria-label="Search"
               />
-<button onClick={(e)=>onClickHandle(e)}>Send Data</button>
               <button className="btn btn-outline-success" type="submit">
                 Search
               </button>
